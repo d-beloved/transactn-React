@@ -12,28 +12,32 @@ function TransactionTable({txns}) {
       </section>
 
       <div className="card mt-50">
-          <table className="table">
-              <thead>
-              <tr className="table">
-                  <th className="table-header">Date</th>
-                  <th className="table-header">Description</th>
-                  <th className="table-header">Type</th>
-                  <th className="table-header">
-                      <span id="amount" onClick={sort}>Amount ($)</span>
-                  </th>
-                  <th className="table-header">Available Balance</th>
+        <table className="table">
+          <thead>
+            <tr className="table">
+              <th className="table-header">Date</th>
+              <th className="table-header">Description</th>
+              <th className="table-header">Type</th>
+              <th className="table-header">
+                <span id="amount" onClick={sort}>
+                  Amount ($)
+                </span>
+              </th>
+              <th className="table-header">Available Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {txns.map((txn, index) => (
+              <tr key={index}>
+                <td>{txn.date}</td>
+                <td>{txn.description}</td>
+                <td>{txn.type === 1 ? "Debit" : "Credit"}</td>
+                <td>{txn.amount}</td>
+                <td>{txn.balance}</td>
               </tr>
-              </thead>
-              <tbody>
-              <tr>
-                  <td>date</td>
-                  <td>description</td>
-                  <td>type === 1 ? "Debit" : "Credit"</td>
-                  <td>amount</td>
-                  <td>balance</td>
-              </tr>
-              </tbody>
-          </table>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );
