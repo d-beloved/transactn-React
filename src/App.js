@@ -4,7 +4,7 @@ import 'h8k-components';
 
 import "./App.css";
 
-const title = 'HackerBank';
+const title = 'Ayodeji';
 
 function App() {
   const txns = [

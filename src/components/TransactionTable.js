@@ -2,16 +2,15 @@ import React, { useState } from "react";
 
 function TransactionTable({txns}) {
   const [dateOfTrnsct, setDateOfTrnsct] = useState("");
-
+  const [dateFill, setDateFill] = useState("");
 
   const sort = () => {};
 
   const changeDate = (e) => {
-    setDateOfTrnsct( e.target.value )
+    setDateFill( e.target.value )
   };
 
   const handleTableData = (e) => {
-    console.log('I got here')
     return (
       (dateOfTrnsct === "") ? (
         txns.map((txn, index) => (
@@ -40,8 +39,8 @@ function TransactionTable({txns}) {
     <div className="layout-column align-items-center mt-50">
       <section className="layout-row align-items-center justify-content-center">
         <label className="mr-10">Transaction Date</label>
-        <input id="date" type="date" onChange={changeDate} name="date" defaultValue="2019-11-29"/>
-        <button className="small" onClick="">Filter</button>
+        <input id="date" type="date" onChange={changeDate} defaultValue="2019-11-29"/>
+        <button className="small" onClick={() => setDateOfTrnsct(dateFill)}>Filter</button>
       </section>
 
       <div className="card mt-50">
