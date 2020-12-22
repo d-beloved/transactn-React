@@ -1,14 +1,8 @@
-# React: HackerBank
-
 ## Environment 
 
 - React Version: 16.13.1
 - Node Version: 12(LTS)
 - Default Port: 8000
-
-## Application Demo:
-
-![](https://hrcdn.net/s3_pub/istreet-assets/FGlur_Ov682QyDjcxduO-w/hackerbank.gif)
 
 ## Functionality Requirements
 
