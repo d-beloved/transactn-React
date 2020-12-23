@@ -4,10 +4,12 @@ function TransactionTable({ txns }) {
   const [dateOfTrnsct, setDateOfTrnsct] = useState("");
   const [dateFill, setDateFill] = useState("");
   const [sorting, setSorting] = useState(false);
+  const [tableData, setTableData] = useState([]);
 
   const handleSorting = () => {
+    let sortedProp = [...tableData];
     return sorting
-    ? txns
+    ? sortedProp
         .sort((a, b) => a.amount - b.amount)
         .map((sortedTxns, index) => (
           <tr key={index}>
@@ -25,6 +27,22 @@ function TransactionTable({ txns }) {
     setDateFill(e.target.value);
   };
 
+  const filterData = () => {
+    let someTxns = txns.filter((txn) => txn.date === dateOfTrnsct);
+    someTxns.map((filteredTxns, index) => (
+        <tr key={index}>
+          <td>{filteredTxns.date}</td>
+          <td>{filteredTxns.description}</td>
+          <td>{filteredTxns.type === 1 ? "Debit" : "Credit"}</td>
+          <td>{filteredTxns.amount}</td>
+          <td>{filteredTxns.balance}</td>
+        </tr>
+      ));
+    // setTableData(someTxns)
+    console.log('here', someTxns)
+    return someTxns;
+  };
+
   const handleTableData = () => {
     return dateOfTrnsct === ""
       ? txns.map((txn, index) => (
@@ -36,17 +54,7 @@ function TransactionTable({ txns }) {
             <td>{txn.balance}</td>
           </tr>
         ))
-      : txns
-          .filter((txn) => txn.date === dateOfTrnsct)
-          .map((filteredTxns, index) => (
-            <tr key={index}>
-              <td>{filteredTxns.date}</td>
-              <td>{filteredTxns.description}</td>
-              <td>{filteredTxns.type === 1 ? "Debit" : "Credit"}</td>
-              <td>{filteredTxns.amount}</td>
-              <td>{filteredTxns.balance}</td>
-            </tr>
-          ));
+      : filterData()
   };
 
   return (
@@ -77,7 +85,7 @@ function TransactionTable({ txns }) {
               <th className="table-header">Description</th>
               <th className="table-header">Type</th>
               <th className="table-header">
-                <span id="amount" onClick={() => setSorting(true)}>
+                <span id="amount" onClick={() => setSorting(!sorting)}>
                   Amount ($)
                 </span>
               </th>
